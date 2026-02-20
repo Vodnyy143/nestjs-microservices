@@ -1,8 +1,13 @@
 import { NestFactory } from '@nestjs/core';
-import { AuthServiceModule } from './auth-service.module';
+
+import {AppModule} from "./app.module";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AuthServiceModule);
-  await app.listen(6000);
+  const app = await NestFactory.create(AppModule);
+
+  const port = process.env.PORT || 6000;
+  await app.listen(port, () => {
+    console.info(`Auth Service listening on port ${port}`);
+  });
 }
 bootstrap();

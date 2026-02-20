@@ -11,7 +11,8 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ZodValidationPipe());
 
-  await app.listen(5000);
-  console.info(`API Gateway running on port ${5000}`);
+  await app.listen(process.env.PORT, () => {
+    console.info(`API Gateway running on port ${process.env.PORT}`);
+  });
 }
 bootstrap();
