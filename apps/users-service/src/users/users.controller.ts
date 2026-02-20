@@ -1,13 +1,13 @@
 import { Controller } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { USERS_PATTERNS } from '@app/shared';
 import {
   CreateUserDto,
   GetUserByEmailDto,
   SearchUsersDto,
   UpdateUserDto,
-} from '@app/shared/dtos/users.dtos';
+  USERS_PATTERNS,
+} from '@app/shared';
 
 @Controller()
 export class UsersController {
@@ -15,6 +15,7 @@ export class UsersController {
 
   @MessagePattern(USERS_PATTERNS.CREATE_USER)
   create(@Payload() dto: CreateUserDto) {
+    console.log(dto);
     return this.usersService.create(dto);
   }
 
@@ -41,7 +42,6 @@ export class UsersController {
 
   @MessagePattern(USERS_PATTERNS.SEARCH_USERS)
   searchUsers(@Payload() dto: SearchUsersDto) {
-    console.log(dto);
     return this.usersService.search(dto);
   }
 }

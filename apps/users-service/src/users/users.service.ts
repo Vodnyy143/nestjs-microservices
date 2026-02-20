@@ -3,12 +3,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { UserEntity } from './entities/user.entity';
-import {
-  CreateUserDto,
-  SearchUsersDto,
-  UpdateUserDto,
-} from '@app/shared/dtos/users.dtos';
+
 import { RpcException } from '@nestjs/microservices';
+import { CreateUserDto, SearchUsersDto, UpdateUserDto } from '@app/shared';
 
 @Injectable()
 export class UsersService {

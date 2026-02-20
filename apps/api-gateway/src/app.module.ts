@@ -5,6 +5,10 @@ import { RMQ_QUEUES } from '@app/shared';
 import { UsersController } from './users/users.controller';
 import { APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { EnvModule } from './env/env.module';
+import { AuthController } from './auth/auth.controller';
 
 @Module({
   imports: [
@@ -12,6 +16,7 @@ import { ZodValidationPipe } from 'nestjs-zod';
       isGlobal: true,
       envFilePath: './apps/api-gateway/.env',
     }),
+    EnvModule,
     ClientsModule.register([
       {
         name: 'AUTH_SERVICE',
@@ -48,12 +53,7 @@ import { ZodValidationPipe } from 'nestjs-zod';
       },
     ]),
   ],
-  controllers: [UsersController],
-  providers: [
-    {
-      provide: APP_PIPE,
-      useClass: ZodValidationPipe,
-    },
-  ],
+  controllers: [UsersController, AuthController],
+  providers: [JwtStrategy, JwtAuthGuard],
 })
 export class AppModule {}
