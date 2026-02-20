@@ -21,11 +21,16 @@
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^4.0.3",
     "@nestjs/core": "^10.0.0",
-    "@nestjs/microservices": "^11.1.14",
+    "@nestjs/microservices": "^10.4.22",
     "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/typeorm": "^11.0.0",
+    "amqp-connection-manager": "^5.0.0",
+    "amqplib": "^0.10.9",
     "nestjs-zod": "^5.1.1",
+    "pg": "^8.18.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
+    "typeorm": "^0.3.28",
     "zod": "^4.3.6"
   },
   "devDependencies": {
@@ -68,7 +73,11 @@
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/apps/"
-    ]
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@app/shared(|/.*)$": "<rootDir>/libs/shared/src/$1"
+    }
   }
 }

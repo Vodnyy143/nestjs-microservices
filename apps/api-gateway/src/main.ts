@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import {ZodValidationPipe} from "nestjs-zod";
+import { ZodValidationPipe } from 'nestjs-zod';
 
-import {AppModule} from "./app.module";
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -9,10 +9,8 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
   app.enableCors();
 
-  app.useGlobalPipes(new ZodValidationPipe());
-
-  await app.listen(process.env.PORT, () => {
-    console.info(`API Gateway running on port ${process.env.PORT}`);
+  await app.listen(process.env.PORT || 5000, () => {
+    console.info(`API Gateway running on port ${process.env.PORT || 5000}`);
   });
 }
 bootstrap();
