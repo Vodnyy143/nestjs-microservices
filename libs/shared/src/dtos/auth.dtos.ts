@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { CreateChatSchema } from '@app/shared/dtos/chat.dto';
+import { createZodDto } from 'nestjs-zod';
 
 export const RegisterSchema = z.object({
   email: z.string().includes('@'),
@@ -31,8 +33,8 @@ export const AuthResponseSchema = z.object({
   }),
 });
 
-export type RegisterDto = z.infer<typeof RegisterSchema>;
-export type LoginDto = z.infer<typeof LoginSchema>;
-export type RefreshTokenDto = z.infer<typeof RefreshTokenSchema>;
+export class RegisterDto extends createZodDto(CreateChatSchema) {}
+export class LoginDto extends createZodDto(LoginSchema) {}
+export class RefreshTokenDto extends createZodDto(RefreshTokenSchema) {}
 export type TokenPayload = z.infer<typeof TokenPayloadSchema>;
 export type AuthResponse = z.infer<typeof AuthResponseSchema>;

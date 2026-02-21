@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { createZodDto } from 'nestjs-zod';
 
 // export const UserSchema = z.object({
 //   id: z.string(),
@@ -33,7 +34,7 @@ export const SearchUsersSchema = z.object({
   offset: z.coerce.number().int().min(0).optional().default(0),
 });
 
-export type CreateUserDto = z.infer<typeof CreateUserSchema>;
-export type UpdateUserDto = z.infer<typeof UpdateUserSchema>;
-export type GetUserByEmailDto = z.infer<typeof GetUserByEmailSchema>;
-export type SearchUsersDto = z.infer<typeof SearchUsersSchema>;
+export class CreateUserDto extends createZodDto(CreateUserSchema) {}
+export class UpdateUserDto extends createZodDto(UpdateUserSchema) {}
+export class GetUserByEmailDto extends createZodDto(GetUserByEmailSchema) {}
+export class SearchUsersDto extends createZodDto(SearchUsersSchema) {}
