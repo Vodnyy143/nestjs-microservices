@@ -15,7 +15,6 @@ export class UsersController {
 
   @MessagePattern(USERS_PATTERNS.CREATE_USER)
   create(@Payload() dto: CreateUserDto) {
-    console.log(dto);
     return this.usersService.create(dto);
   }
 

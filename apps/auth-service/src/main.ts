@@ -5,8 +5,6 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { RMQ_QUEUES } from '@app/shared';
 
 async function bootstrap() {
-  console.log(RMQ_QUEUES.AUTH);
-
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AuthAppModule,
     {

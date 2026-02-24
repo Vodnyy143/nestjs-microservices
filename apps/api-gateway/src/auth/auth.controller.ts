@@ -65,9 +65,9 @@ export class AuthController {
     );
   }
 
+  @Public()
   @Post('refresh')
   @ApiOperation({ summary: 'Refresh access and refresh tokens' })
-  @ApiBearerAuth()
   @ApiBody({
     schema: {
       type: 'object',

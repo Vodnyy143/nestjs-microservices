@@ -9,6 +9,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { EnvModule } from './env/env.module';
 import { AuthController } from './auth/auth.controller';
+import { ChatController } from './chat/chat.controller';
 
 @Module({
   imports: [
@@ -53,7 +54,7 @@ import { AuthController } from './auth/auth.controller';
       },
     ]),
   ],
-  controllers: [UsersController, AuthController],
+  controllers: [UsersController, AuthController, ChatController],
   providers: [
     JwtStrategy,
     {
